@@ -21,7 +21,7 @@ if(!$Link) {
 }
 
 // SQL文を生成 
-$query = "SELECT Code , Name , Continent , Region , IndepYear , SurfaceArea  country ORDER BY Code LIMIT 30";
+$query = "SELECT Code , Name , Continent , Region , IndepYear , SurfaceArea FROM country ORDER BY Code LIMIT 30";
 if($submit === "search") {
   $wheres = [];
   if($name !== "") {
@@ -62,8 +62,8 @@ $result = mysqli_query($Link, $query);
 // DBコネクションを切断
 mysqli_close($Link);
 } catch(\Exception $e) {
-  die("例外処理");
 }
+  
 ?>
 <!doctype html>
 <html lang="en">
@@ -86,16 +86,16 @@ mysqli_close($Link);
      </div>
    </div>
    <div class="row mb-3">
-     <label for="Continent" class="col-sm-2 col-form-label">Continent</label>
-     <div id="Continent" name="Continent" class="col-sm-10">
-      <select class="form-select" id="Continent" name="Continent">
+     <label for="continent" class="col-sm-2 col-form-label">Continent</label>
+     <div id="continent" name="continent" class="col-sm-10">
+      <select class="form-select" id="continent" name="continent">
         <option <?php if( $continent === 'Asia' ) echo 'selected'; ?> value="Asia">Asia</option>
-        <option <?php if( $continent === 'Europe' ) echo 'selected'; ?>value="Europe">Europe</option>
-        <option <?php if( $continent === 'North Americ' ) echo 'selected'; ?>value="North America">North America</option>
-        <option <?php if( $continent === 'Africa' ) echo 'selected'; ?>value="Africa">Africa</option>
-        <option <?php if( $continent === 'Oceania' ) echo 'selected'; ?>value="Oceania">Oceania</option>
-        <option <?php if( $continent === 'Antarctica' ) echo 'selected'; ?>value="Antarctica">Antarctica</option>
-        <option <?php if( $continent === 'South America' ) echo 'selected'; ?>value="South America">South America</option>
+        <option <?php if( $continent === 'Europe' ) echo 'selected'; ?> value="Europe">Europe</option>
+        <option <?php if( $continent === 'North America' ) echo 'selected'; ?> value="North America">North America</option>
+        <option <?php if( $continent === 'Africa' ) echo 'selected'; ?> value="Africa">Africa</option>
+        <option <?php if( $continent === 'Oceania' ) echo 'selected'; ?> value="Oceania">Oceania</option>
+        <option <?php if( $continent === 'Antarctica' ) echo 'selected'; ?> value="Antarctica">Antarctica</option>
+        <option <?php if( $continent === 'South America' ) echo 'selected'; ?> value="South America">South America</option>
       </select>
      </div>
    </div>
@@ -111,7 +111,7 @@ mysqli_close($Link);
         <div class="input-group">
         <input type="number" step="0.01" class="form-control" id="surfacearea_min" name="surfacearea_min" value="<?php echo $surfacearea_min; ?>">
         <div class="input-group-text">～</div>
-        <input type="number" step="0.01" class="form-control" id="surfacearea_max" name="surfacearea_min" value="<?php echo $surfacearea_max; ?>">
+        <input type="number" step="0.01" class="form-control" id="surfacearea_max" name="surfacearea_max" value="<?php echo $surfacearea_max; ?>">
         </div>
       </div>
    </div>
@@ -125,7 +125,7 @@ mysqli_close($Link);
         </div>
       </div>
    </div>
-   <button type="submit" class="btn btn-primary" name="submit" valie="search">検索</button>
+   <button type="submit" class="btn btn-primary" name="submit" value="search">検索</button>
 </form>
 <table class="table">
     <thead>
